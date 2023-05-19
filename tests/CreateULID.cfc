@@ -129,6 +129,24 @@ component extends="org.lucee.cfml.test.LuceeTestCase" labels="ulid" {
 				systemOutput( "inserting #variables.rounds# rows with CreateULID('Monotonic') (pre cooked) took " & numberFormat(timer) & "ms", true);
 			});
 
+			it(title="dump table sizes", body = function( currentSpec ) {
+				if ( isEmpty( variables.mysql ) ) return "";
+				query name="local.tables" datasource=#variables.mysql# {
+					echo("SELECT  TABLE_NAME, ROUND((DATA_LENGTH + INDEX_LENGTH) / 1024) AS SIZE_KB,
+								ROUND(DATA_LENGTH / 1024) AS DATA_KB,
+								ROUND(INDEX_LENGTH / 1024) AS INDEX_KB
+						FROM 	information_schema.TABLES
+						WHERE	TABLE_SCHEMA = 'lucee'
+								AND TABLE_NAME like 'test_ulid_%'
+						ORDER BY(DATA_LENGTH + INDEX_LENGTH) DESC");
+				}
+				systemOutput("", true);
+				systemOutput("Report resulting table sizes", true);
+				loop query="tables" {
+					systemOutput("#tables.table_name# - data: #numberFormat(tables.DATA_KB)#Kb, index: #numberFormat(tables.INDEX_KB)#Kb, total: #numberFormat(tables.SIZE_KB)#Kb", true);
+				}
+			});
+
 			it(title="expect CreateULID() to throw on bad/unsupported type", body = function( currentSpec ) {
 				expect(function(){
 					createULID("uuid");
