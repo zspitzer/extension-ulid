@@ -78,7 +78,7 @@ name: "${label}"
 description: "${description}"
 lucee-core-version: "${luceeCoreVersion}"
 release-type: ${releaseType}
-start-bundles: true
+start-bundles: false
     </echo>
   </target>
 

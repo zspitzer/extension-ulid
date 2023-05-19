@@ -1,4 +1,4 @@
-component extends="org.lucee.cfml.test.LuceeTestCase" labels="ulid" skip="true" {
+component extends="org.lucee.cfml.test.LuceeTestCase" labels="ulid" {
 
 	variables.rounds = 10000;
 	variables.mysql = server.getDatasource("mysql");
@@ -127,6 +127,12 @@ component extends="org.lucee.cfml.test.LuceeTestCase" labels="ulid" skip="true" 
 
 				systemOutput( "" , true );
 				systemOutput( "inserting #variables.rounds# rows with CreateULID('Monotonic') (pre cooked) took " & numberFormat(timer) & "ms", true);
+			});
+
+			it(title="expect CreateULID() to throw on bad/unsupported type", body = function( currentSpec ) {
+				expect(function(){
+					createULID("uuid");
+				}).toThrow();
 			});
 
 		});

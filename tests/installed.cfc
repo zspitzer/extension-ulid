@@ -6,9 +6,4 @@ component extends="org.lucee.cfml.test.LuceeTestCase" labels="ulid" {
         systemOutput(fd, true);
         createULID();
     }
-
-    function testBadType (){
-        createULID("uuid"); // should throw
-    }
-
 }
