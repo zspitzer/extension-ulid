@@ -6,7 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      luceeVersion: light-6.0.0.391-SNAPSHOT
+      luceeVersion: zero-6.0.0.503-SNAPSHOT
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 11
@@ -24,17 +24,12 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ~/.m2
-        key: lucee-ulid
-        restore-keys: |
-          ${{ runner.os }}-m2
-          maven-cache
+        key: maven-cache
     - name: Cache Lucee files
       uses: actions/cache@v3
       with:
         path: _actions/lucee/lucee-script-engine-runner/main/lucee-download-cache
-        key: lucee-downloads-${{ env.luceeVersion }}
-        restore-keys: |
-          lucee-downloads
+        key: lucee-downloads
     - name: Build extension-ulid with Ant
       run: ant -noinput -verbose -buildfile build.xml
     - name: Upload Artifact
