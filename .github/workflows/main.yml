@@ -28,7 +28,7 @@ jobs:
     - name: Cache Lucee files
       uses: actions/cache@v3
       with:
-        path: _actions/lucee/lucee-script-engine-runner/main/lucee-download-cache
+        path: ~/_actions/lucee/script-runner/main/lucee-download-cache
         key: lucee-downloads
     - name: Build extension-ulid with Ant
       run: ant -noinput -verbose -buildfile build.xml
