@@ -1,0 +1,28 @@
+{
+    "name": "Lucee ULID Extension",
+    "author": "Zac Spitzer",
+    "version": "0.0.0.2",
+    "bugs": "https://github.com/zspitzer/extension-ulid/issues",
+    "thumbnail": "https://raw.githubusercontent.com/zspitzer/extension-ulid/main/source/images/logo.png",
+    "homepage": "https://github.com/zspitzer/extension-ulid",
+    "keywords": "uuid ulid",
+    "location": "ForgeboxStorage",
+    "private": false,
+    "projectURL": "https://github.com/zspitzer/extension-ulid",
+    "repository": {
+        "type": "git",
+        "URL": "https://github.com/zspitzer/extension-ulid"
+    },
+    "shortDescription": "A Lucee Extension to generate ULIDs, ",
+    "slug": "E4B50224-D3CB-4CA4-B75B28399DA181AF",
+    "type": "lucee-extensions",
+    "lucee-extension-releasetype": "all",
+    "lucee-extension-mincoreversion": "5.3.0.0",
+    "lucee-extension-category": "utils",
+    "engines": [
+        {
+            "type": "lucee",
+            "version": ">=5.3.0"
+        }
+    ]
+}
